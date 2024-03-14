@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형웹HW02_서은유_202227058</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="d_Top">
+            <p id="student_id">202227058</p>
+            <p id="student_name">서은유</p>
+        </div>
+        <div id="d_Left">
+            <button id="bt1" onclick="showCanvas()">버튼1</buton>
+            <button id="bt2" onclick="showImage()">버튼2</button>
+        </div>
+        <div id="d_Right">
+            <p id="text">빈화면</p>
+            <canvas id="myCanvas" width="958" height="598"></canvas>
+            <div id="gameImage">
+                <img src="bg.jpg" alt="배틀그라운드" id="bg">
+                <ul id="game">
+                    <li>모바일 배틀그라운드</li>
+                    <li>2018년</li>
+                    <li>배틀로얄, 서바이벌</li>
+                    <li>친구들과 함께 즐길 수 있고, <br>
+                        서로 경쟁하며 1위를 하면 성취감을<br> 느끼기 때문에 좋아한다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCanvas() {
+        var div1 = document.getElementById('text');
+        div1.style.display = 'none';
+        var gameImage = document.getElementById('gameImage');
+        gameImage.style.display = 'none';
+        
+        var canvas = document.getElementById('myCanvas');
+        canvas.style.display = 'block';
+        drawCircle();
+    }
+
+    function drawCircle() {
+        var canvas = document.getElementById('myCanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var centerX = canvas.width / 2;
+            var centerY = canvas.height / 2;
+            var radius = 100;
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            ctx.lineWidth = 2; 
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+    }
+    function showImage() {
+        var div1 = document.getElementById('text');
+        div1.style.display = 'none';
+        var canvas = document.getElementById('myCanvas');
+        canvas.style.display = 'none';
+
+        var gameImage = document.getElementById('gameImage');
+        gameImage.style.display = 'block';
+    }
+    </script>
+</body>
+</html>

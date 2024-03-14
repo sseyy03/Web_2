@@ -1,0 +1,81 @@
+
+#d_Top{
+    width: 1198px;
+    height: 73px;
+    border: 1px solid black;
+
+}
+#d_Left{
+    float: left;
+    height: 598px;
+    width: 238px;
+    border: 1px solid black;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#d_Right{
+    float: left;
+    height: 598px;
+    width: 958px;
+    border: 1px solid black;
+    font-family:'굴림';
+    font-size: 30px;
+    color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#student_id{
+    float: right;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: blue;
+    margin: 22px;
+    vertical-align: middle;
+}
+#student_name{
+    float: right;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color: green;
+    margin: 22px;
+    vertical-align: middle;
+
+}
+#bt1{
+    height: 100px;
+    width: 180px;
+    background-color: yellow; 
+    color: black; 
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    margin: 8px;
+}
+#bt2{
+    height: 100px;
+    width: 180px;
+    background-color: skyblue; 
+    color: white; 
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    margin: 8px;
+}
+canvas {
+    border: 1px solid black;
+    display: none; 
+}
+#gameImage {
+    display: none;
+}
+#bg{
+    float: left;
+    width: 300px;
+    height: 400px;
+}
+#game{
+    float: left;
+}
