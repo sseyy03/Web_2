@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Animation</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="GameScreenCanvas" width="1600" height="1000"></canvas>
+    <script>
+        var canvas = document.getElementById("GameScreenCanvas");
+        var ctx = canvas.getContext("2d");
+
+        draw();
+
+        var earthRotAngle = 0;
+        var moonRotAngle = 0;
+        var sunRotAngle = 0;
+        var earthOrbitRadius = 300;
+        var moonOrbitRadius = 100;
+
+        function draw() {
+            earthRotAngle += Math.PI / 150;
+            moonRotAngle -= Math.PI / 100;
+            sunRotAngle += Math.PI / 100;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Sun
+            drawPlanet(100, "red", 0, 0, sunRotAngle);
+
+            // Draw Earth
+            var earthX = Math.cos(earthRotAngle) * earthOrbitRadius;
+            var earthY = Math.sin(earthRotAngle) * earthOrbitRadius;
+            drawPlanet(80, "blue", earthX, earthY, earthRotAngle);
+
+            // Draw Moon
+            var moonX = earthX + Math.cos(moonRotAngle) * moonOrbitRadius;
+            var moonY = earthY + Math.sin(moonRotAngle) * moonOrbitRadius;
+            drawPlanet(40, "gray", moonX, moonY, moonRotAngle);
+
+            requestAnimationFrame(draw);
+        }
+
+        function drawPlanet(radius, color, x, y, rotAngle) {
+            ctx.save();
+            ctx.fillStyle = color;
+            ctx.translate(canvas.width / 2 + x, canvas.height / 2 + y);
+            ctx.rotate(rotAngle);
+            ctx.fillRect(-radius / 2, -radius / 2, radius, radius);
+            ctx.restore();
+        }
+    </script>
+</body>
+</html>
