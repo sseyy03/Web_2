@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(72, 153, 242);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  canvas {
+    background-color: rgb(180, 180, 180);
+    border: 2px solid #000;
+    width: 600px; /* 캔버스 실제 너비 */
+    height: 800px; /* 캔버스 실제 높이 */
+    margin: 50px;
+  }
+
+  
