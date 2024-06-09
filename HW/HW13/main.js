@@ -30,23 +30,27 @@ class Triangle {
     }
 
     isInside(x, y) {
-        var localX = x - this.position_X;
-        var localY = y - this.position_Y;
-        
-        var cos = Math.cos(-this.rotation);
-        var sin = Math.sin(-this.rotation);
-        var rotatedX = localX * cos - localY * sin;
-        var rotatedY = localX * sin + localY * cos;
+        var cos = Math.cos(this.rotation);
+        var sin = Math.sin(this.rotation);
 
-        var v0 = [0, -this.size];
-        var v1 = [this.size, this.size];
-        var v2 = [-this.size, this.size];
-        
-        var b = (v1[0] - v0[0]) * (rotatedY - v0[1]) - (v1[1] - v0[1]) * (rotatedX - v0[0]);
-        var c = (v2[0] - v1[0]) * (rotatedY - v1[1]) - (v2[1] - v1[1]) * (rotatedX - v1[0]);
-        var a = (v0[0] - v2[0]) * (rotatedY - v2[1]) - (v0[1] - v2[1]) * (rotatedX - v2[0]);
-        
-        return (a <= 0 && b <= 0 && c <= 0) || (a >= 0 && b >= 0 && c >= 0);
+        // 삼각형의 꼭지점 좌표 계산
+        var Ax = this.position_X + 0 * cos - (-this.size) * sin;
+        var Ay = this.position_Y + 0 * sin + (-this.size) * cos;
+        var Bx = this.position_X + this.size * cos - this.size * sin;
+        var By = this.position_Y + this.size * sin + this.size * cos;
+        var Cx = this.position_X + (-this.size) * cos - this.size * sin;
+        var Cy = this.position_Y + (-this.size) * sin + this.size * cos;
+
+        // 직선 방정식을 이용해 점이 삼각형 내부에 있는지 확인하는 함수
+        function isLeftOfLine(px, py, x1, y1, x2, y2) {
+            return ((x2 - x1) * (py - y1) - (y2 - y1) * (px - x1)) >= 0;
+        }
+
+        var insideAB = isLeftOfLine(x, y, Ax, Ay, Bx, By);
+        var insideBC = isLeftOfLine(x, y, Bx, By, Cx, Cy);
+        var insideCA = isLeftOfLine(x, y, Cx, Cy, Ax, Ay);
+
+        return insideAB && insideBC && insideCA;
     }
 }
 
@@ -72,5 +76,4 @@ function handleClick(event) {
 
 canvas.addEventListener('click', handleClick);
 draw();
-
 });
